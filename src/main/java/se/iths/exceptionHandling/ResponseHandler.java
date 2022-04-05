@@ -99,4 +99,35 @@ public class ResponseHandler {
             }
         }
     }
+
+    public void ensureStudentHasEmail(Student student) {
+        if (student.getEmail() == null) {
+            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"Email is required\"}";
+
+            try {
+                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
+                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
+                        .type(MediaType.APPLICATION_JSON).build());
+
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void ensureTeacherHasEmail(Teacher teacher) {
+        if (teacher.getEmail() == null) {
+            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"Email is required\"}";
+
+            try {
+                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
+                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
+                        .type(MediaType.APPLICATION_JSON).build());
+
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

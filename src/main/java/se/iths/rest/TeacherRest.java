@@ -77,7 +77,6 @@ public class TeacherRest {
     @PUT
     public Response updateTeacherInfo(Teacher teacher, @PathParam("email") String email) {
         handler.ensureTeacherHasValues(teacher);
-
         Teacher foundTeacher = teacherService.findTeacherByMail(email);
         handler.ensureEntityExists(foundTeacher, email);
 

@@ -26,25 +26,6 @@ public class TeacherService {
         return entityManager.find(Teacher.class, email);
     }
 
-    public void updateFirstName(String firstName, String id) {
-        Teacher foundTeacher = entityManager.find(Teacher.class, id);
-        foundTeacher.setFirstName(firstName);
-        entityManager.merge(foundTeacher);
-    }
-
-    public void updateLastName(String lastName, String id) {
-        Teacher foundTeacher = entityManager.find(Teacher.class, id);
-        foundTeacher.setLastName(lastName);
-        entityManager.merge(foundTeacher);
-    }
-
-
-    public void updateEmail(String email, String id) {
-        Teacher foundTeacher = entityManager.find(Teacher.class, id);
-        foundTeacher.setEmail(email);
-        entityManager.merge(foundTeacher);
-    }
-
     public void deleteTeacher(String email) {
         Teacher foundTeacher = entityManager.find(Teacher.class, email);
         entityManager.remove(foundTeacher);

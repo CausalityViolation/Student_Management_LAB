@@ -64,6 +64,8 @@ public class StudentRest {
         handler.ensureStudentHasValues(student);
         Student foundStudent = studentService.findByEmail(email);
         handler.ensureEntityExists(foundStudent, email);
+        student.setEmail(email);
+        studentService.update(student);
         return handler.operationResponse();
 
     }
