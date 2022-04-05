@@ -1,37 +1,30 @@
 package se.iths.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Student {
-
-    @GeneratedValue
-    private Long id;
+public class Teacher {
 
     private String firstName;
     private String lastName;
-    @Column(unique = true)
+
     @Id
     private String email;
-    private String phoneNumber;
 
-
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.REMOVE)
-    @JsonManagedReference
+    @OneToMany
     private List<Subject> subjects = new ArrayList<>();
 
-    public Student() {
+    public Teacher() {
     }
 
-    public Student(String firstName, String lastName, String email, String phoneNumber) {
+    public Teacher(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.phoneNumber = phoneNumber;
     }
 
     public String getFirstName() {
@@ -58,18 +51,8 @@ public class Student {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public void addSubject(Subject subject) {
         subjects.add(subject);
     }
 
 }
-
-
