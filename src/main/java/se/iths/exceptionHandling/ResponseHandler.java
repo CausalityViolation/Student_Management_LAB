@@ -8,6 +8,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import se.iths.entity.*;
+import se.iths.service.StudentService;
+import se.iths.service.TeacherService;
 
 public class ResponseHandler {
 
@@ -71,8 +73,8 @@ public class ResponseHandler {
 
     public void ensureTeacherHasValues(Teacher teacher) {
 
-        if (teacher.getFirstName() == null || teacher.getLastName() == null || teacher.getEmail() == null) {
-            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"FirstName, LastName and Email are required\"}";
+        if (teacher.getFirstName() == null || teacher.getLastName() == null) {
+            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"firstName  and lastName are required\"}";
 
             try {
                 throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
@@ -86,8 +88,8 @@ public class ResponseHandler {
     }
 
     public void ensureStudentHasValues(Student student) {
-        if (student.getEmail() == null || student.getLastName() == null || student.getFirstName() == null) {
-            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"FirstName, LastName and Email are required\"}";
+        if (student.getLastName() == null || student.getFirstName() == null) {
+            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"firstName and lastName are required\"}";
 
             try {
                 throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)

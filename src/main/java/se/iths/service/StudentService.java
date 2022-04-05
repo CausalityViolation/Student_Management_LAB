@@ -26,33 +26,8 @@ public class StudentService {
         return entityManager.createQuery("SELECT s FROM Student s WHERE s.lastName = :lastName", Student.class).setParameter("lastName", lastName).getResultList();
     }
 
-    public List<Student> findByID(Long id) {
-        return entityManager.createQuery("SELECT s FROM Student s WHERE s.id = :id", Student.class).setParameter("id", id).getResultList();
-    }
-
     public Student findByEmail(String email) {
-        return entityManager.createQuery("SELECT s FROM Student s WHERE s.email = :email", Student.class).setParameter("email", email).getSingleResult();
-    }
-
-
-    public void updateFirstName(String firstName, Long id) {
-        Student foundStudent = entityManager.find(Student.class, id);
-        foundStudent.setFirstName(firstName);
-    }
-
-    public void updateLastName(String lastName, Long id) {
-        Student foundStudent = entityManager.find(Student.class, id);
-        foundStudent.setLastName(lastName);
-    }
-
-    public void updatePhone(String phone, Long id) {
-        Student foundStudent = entityManager.find(Student.class, id);
-        foundStudent.setPhoneNumber(phone);
-    }
-
-    public void updateEmail(String email, Long id) {
-        Student foundStudent = entityManager.find(Student.class, id);
-        foundStudent.setEmail(email);
+        return entityManager.find(Student.class, email);
     }
 
     public void delete(String email) {
@@ -64,5 +39,9 @@ public class StudentService {
         Student foundStudent = entityManager.find(Student.class, email);
         foundStudent.addSubject(subject);
         entityManager.merge(foundStudent);
+    }
+
+    public void update(Student student) {
+        entityManager.merge(student);
     }
 }

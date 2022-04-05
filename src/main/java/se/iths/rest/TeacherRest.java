@@ -1,5 +1,6 @@
 package se.iths.rest;
 
+import se.iths.entity.Student;
 import se.iths.entity.Subject;
 import se.iths.entity.Teacher;
 import se.iths.exceptionHandling.ResponseHandler;
@@ -46,6 +47,7 @@ public class TeacherRest {
     @POST
     public Response addNewTeacher(Teacher newTeacher) {
         handler.ensureTeacherHasValues(newTeacher);
+        handler.ensureTeacherHasEmail(newTeacher);
         Teacher found = teacherService.findTeacherByMail(newTeacher.getEmail());
         handler.ensureEntityDoesntExist(found, newTeacher.getEmail());
         teacherService.createTeacher(newTeacher);
@@ -64,6 +66,7 @@ public class TeacherRest {
     @PATCH
     public Response addSubjectToTeacher(@PathParam("email") String email, @PathParam("subjectName") String subjectName) {
 
+        //FIXA SÅ MAN INTE KAN LÄGGA TILL SAMMA SUBJECT FLERA GÅNGER TILL SAMMA LÄRARE
         Subject foundSubject = subjectService.getByName(subjectName);
         Teacher foundTeacher = teacherService.findTeacherByMail(email);
         handler.ensureEntityExists(foundTeacher, email);
@@ -74,21 +77,14 @@ public class TeacherRest {
     }
 
     @Path("{email}")
-    @PUT
+    @PATCH
     public Response updateTeacherInfo(Teacher teacher, @PathParam("email") String email) {
         handler.ensureTeacherHasValues(teacher);
         Teacher foundTeacher = teacherService.findTeacherByMail(email);
         handler.ensureEntityExists(foundTeacher, email);
-
-        if (foundTeacher == null) {
-
-            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
-                    .entity("Couldn't find teacher with email: " + email)
-                    .type(MediaType.APPLICATION_JSON).build());
-        } else {
-
-            return handler.operationResponse();
-        }
+        teacher.setEmail(email);
+        teacherService.updateTeacherInfo(teacher);
+        return handler.operationResponse();
     }
 
 

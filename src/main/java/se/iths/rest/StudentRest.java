@@ -43,6 +43,7 @@ public class StudentRest {
     @POST
     public Response addNewStudent(Student student) {
         handler.ensureStudentHasValues(student);
+        handler.ensureStudentHasEmail(student);
         handler.ensureEntityDoesntExist(studentService.findByEmail(student.getEmail()), student.getEmail());
         studentService.create(student);
 
@@ -52,7 +53,6 @@ public class StudentRest {
     @Path("{mail}")
     @DELETE
     public Response deleteStudentByMail(@PathParam("mail") String mail) {
-
         handler.ensureEntityExists(studentService.findByEmail(mail), mail);
         studentService.delete(mail);
         return handler.operationResponse();
@@ -67,7 +67,6 @@ public class StudentRest {
         student.setEmail(email);
         studentService.update(student);
         return handler.operationResponse();
-
     }
 }
 

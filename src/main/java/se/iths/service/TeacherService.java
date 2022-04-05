@@ -37,4 +37,7 @@ public class TeacherService {
         entityManager.merge(foundTeacher);
     }
 
+    public void updateTeacherInfo(Teacher teacher) {
+        entityManager.merge(teacher);
+    }
 }
