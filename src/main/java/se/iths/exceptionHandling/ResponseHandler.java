@@ -1,13 +1,10 @@
 package se.iths.exceptionHandling;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import se.iths.entity.Student;
 import se.iths.entity.Subject;
 import se.iths.entity.Teacher;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -85,14 +82,6 @@ public class ResponseHandler {
         }
     }
 
-    private void throwException(String inputJson) {
-        try {
-            throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                    .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                    .type(MediaType.APPLICATION_JSON).build());
 
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
 }
+
