@@ -11,12 +11,13 @@ import java.util.List;
 public class ResponseHandler {
 
     private final ObjectMapper mapper = new ObjectMapper();
+    CustomExceptionBecauseReasons custom = new CustomExceptionBecauseReasons();
 
     public void ensureEntityExists(Object entity, String entityName) {
         if (entity == null) {
             final String inputJson = "{\"Status:\":\"404 NOT FOUND\",\"Entity\":\"" + entityName + "\"}";
 
-            throwException(inputJson);
+            custom.throwException(inputJson, Response.Status.NOT_FOUND);
         }
     }
 
@@ -24,7 +25,7 @@ public class ResponseHandler {
         if (entity != null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"" + tag + "\", \"Info:\":\"Already in database\"}";
 
-            throwException(inputJson);
+            custom.throwException(inputJson, Response.Status.NOT_ACCEPTABLE);
         }
     }
 
@@ -44,7 +45,7 @@ public class ResponseHandler {
         if (teacher.getFirstName() == null || teacher.getLastName() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"firstName  and lastName are required\"}";
 
-            throwException(inputJson);
+            custom.throwException(inputJson, Response.Status.NOT_ACCEPTABLE);
         }
     }
 
@@ -52,7 +53,7 @@ public class ResponseHandler {
         if (student.getLastName() == null || student.getFirstName() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"firstName and lastName are required\"}";
 
-            throwException(inputJson);
+            custom.throwException(inputJson, Response.Status.NOT_ACCEPTABLE);
         }
     }
 
@@ -60,7 +61,7 @@ public class ResponseHandler {
         if (student.getEmail() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"Email is required\"}";
 
-            throwException(inputJson);
+            custom.throwException(inputJson, Response.Status.NOT_ACCEPTABLE);
         }
     }
 
@@ -68,7 +69,7 @@ public class ResponseHandler {
         if (teacher.getEmail() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"Email is required\"}";
 
-            throwException(inputJson);
+            custom.throwException(inputJson, Response.Status.NOT_ACCEPTABLE);
         }
     }
 
@@ -77,7 +78,7 @@ public class ResponseHandler {
             if (sub.getSubjectName().equalsIgnoreCase(subjectName)) {
                 final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"" + entityName + "\", \"Info:\":\"Duplicate entry found\"}";
 
-                throwException(inputJson);
+                custom.throwException(inputJson, Response.Status.NOT_ACCEPTABLE);
             }
         }
     }
