@@ -32,7 +32,7 @@ http://localhost:8080/student-management-system/comrade/students
 
 
 # DELETE STUDENT(by Email)
-localhost:8080/student-management-system/comrade/students/{email}
+http://localhost:8080/student-management-system/comrade/students/{email}
 
 ========================================================================================
 
@@ -69,10 +69,10 @@ http://localhost:8080/student-management-system/comrade/teachers
 
 
 # REMOVE TEACHER(by Email)
-localhost:8080/student-management-system/comrade/teachers/{email}
+http://localhost:8080/student-management-system/comrade/teachers/{email}
 
 # ADD SUBJECT TO TEACHER
-localhost:8080/student-management-system/comrade/teachers/{SubjectName}/{email}
+http://localhost:8080/student-management-system/comrade/teachers/{SubjectName}/{email}
 
 ========================================================================================
 
