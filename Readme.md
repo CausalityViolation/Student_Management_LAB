@@ -1,38 +1,105 @@
-# Student_Management_LAB
-School project Java EE
+# NEW STUDENT
+http://localhost:8080/student-management-system/comrade/students
 
-**<Endpoints>**
-
-**Delete:**
-localhost:8080/student-management-system/api/students/{email of student to delete}
-
-**Post:**
-localhost:8080/student-management-system/api/students
-
-
-**JSON ADD STUDENT (POST) example** 
-
+Json body:
+``` Json
 {
 	"firstName" : "Wuffuwff",
 	"lastName" : "Niselander",
-	"email" : "ae2@gmail.wow",
+	"email" : "nisselander@muffe.se",
 	"phoneNumber" : "073555555"
 }
+```
 
-**GET Query (student last name)**
-localhost:8080/student-management-system/api/students/query
+# UPDATE STUDENT
+http://localhost:8080/student-management-system/comrade/students/{email}
 
-
-**Get ALL**
-localhost:8080/student-management-system/api/students
-
-**PATCH**
-localhost:8080/student-management-system/api/students/{email of student to update}
-
-
-**JSON PATCH example** 
-
+Json body:
+``` Json
 {
-	"firstName" : "Muffe",
-	"lastName" : "Muffesson",
+	"lastName":"fittluder",
+	"firstName":"g"
 }
+```
+
+# GET STUDENT(by Last name)
+E.g.
+http://localhost:8080/student-management-system/comrade/students/query?lastName=And
+
+
+# GET ALL STUDENTS
+http://localhost:8080/student-management-system/comrade/students
+
+
+# DELETE STUDENT(by Email)
+localhost:8080/student-management-system/comrade/students/{email}
+
+========================================================================================
+
+# NEW TEACHER
+http://localhost:8080/student-management-system/comrade/teachers
+
+Json body:
+``` Json
+{
+	"firstName":"Oppla",
+	"lastName":"Pompa",
+	"email":"email@lel.se"
+}
+```
+
+# UPDATE TEACHER
+http://localhost:8080/student-management-system/comrade/teachers/{email}
+
+Json body:
+``` Json
+{
+	"lastName":"nyttNamn",
+	"firstName":"nyttEfternamn"
+}
+```
+
+# GET TEACHER(by email)
+E.g.
+http://localhost:8080/student-management-system/comrade/teachers/{email}
+
+
+# GET ALL TEACHERS
+http://localhost:8080/student-management-system/comrade/teachers
+
+
+# REMOVE TEACHER(by Email)
+localhost:8080/student-management-system/comrade/teachers/{email}
+
+# ADD SUBJECT TO TEACHER
+localhost:8080/student-management-system/comrade/teachers/{SubjectName}/{email}
+
+========================================================================================
+
+# NEW SUBJECT
+http://localhost:8080/student-management-system/comrade/subjects
+
+Json body:
+``` Json
+{
+	"subjectName":"English"
+}
+```
+
+# ADD STUDENT TO SUBJECT
+http://localhost:8080/student-management-system/comrade/subjects/{subjectName}/{studentEmail}
+
+
+# GET ALL SUBJECTS
+http://localhost:8080/student-management-system/comrade/subjects
+
+
+# GET SUBJECT BY NAME
+http://localhost:8080/student-management-system/comrade/subjects/{subjectName}
+
+
+# DELETE SUBJECT BY NAME
+http://localhost:8080/student-management-system/comrade/subjects/{subjectName}
+
+
+
