@@ -37,14 +37,6 @@ public class SubjectRest {
     }
 
 
-    @PUT
-    public Response update(Subject subject) {
-        handler.ensureSubjectHasValues(subject);
-        handler.ensureEntityExists(subject, subject.getSubjectName());
-        subjectService.update(subject);
-        return handler.operationResponse();
-    }
-
     @Path("{subjectName}/{studentEmail}")
     @PATCH
     public Response addStudent(@PathParam("subjectName") String subjectName, @PathParam("studentEmail") String studentEmail) {

@@ -56,21 +56,6 @@ public class ResponseHandler {
         }
     }
 
-    public void ensureSubjectHasValues(Subject subject) {
-        if (subject.getSubjectName() == null) {
-            final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN SUBJECT\", \"Info:\":\"subject Name required\"}";
-
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void ensureTeacherHasValues(Teacher teacher) {
 
         if (teacher.getFirstName() == null || teacher.getLastName() == null) {
