@@ -1,6 +1,5 @@
 package se.iths.rest;
 
-import se.iths.entity.Student;
 import se.iths.entity.Subject;
 import se.iths.entity.Teacher;
 import se.iths.exceptionHandling.ResponseHandler;
@@ -86,8 +85,6 @@ public class TeacherRest {
         teacherService.updateTeacherInfo(teacher);
         return handler.operationResponse();
     }
-
-
 
 
 }

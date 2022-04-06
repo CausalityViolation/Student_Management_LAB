@@ -1,8 +1,8 @@
 package se.iths.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,4 +55,12 @@ public class Teacher {
         subjects.add(subject);
     }
 
+    @JsonIgnore
+    public List<Subject> findSubjects() {
+        return subjects;
+    }
+
+    public void removeSubjects() {
+        subjects.clear();
+    }
 }

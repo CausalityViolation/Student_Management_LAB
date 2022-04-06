@@ -2,14 +2,14 @@ package se.iths.exceptionHandling;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import se.iths.entity.Student;
+import se.iths.entity.Subject;
+import se.iths.entity.Teacher;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-import se.iths.entity.*;
-import se.iths.service.StudentService;
-import se.iths.service.TeacherService;
+import java.util.List;
 
 public class ResponseHandler {
 

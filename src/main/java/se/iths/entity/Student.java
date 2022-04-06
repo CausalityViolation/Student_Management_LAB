@@ -20,7 +20,7 @@ public class Student {
     private String phoneNumber;
 
 
-    @ManyToMany(mappedBy = "students", cascade = CascadeType.REMOVE)
+    @ManyToMany(mappedBy = "students", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Subject> subjects = new ArrayList<>();
 

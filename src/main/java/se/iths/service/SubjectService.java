@@ -41,9 +41,9 @@ public class SubjectService {
         manager.merge(found);
     }
 
-    public void addTeacher(Teacher teacher, String name){
-    Subject found = manager.find(Subject.class, name);
-    found.setTeacher(teacher);
-    manager.merge(found);
+    public void addTeacher(Teacher teacher, String name) {
+        Subject found = manager.find(Subject.class, name);
+        found.setTeacher(teacher);
+        manager.merge(found);
     }
 }
