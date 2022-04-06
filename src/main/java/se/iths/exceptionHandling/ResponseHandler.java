@@ -19,14 +19,7 @@ public class ResponseHandler {
         if (entity == null) {
             final String inputJson = "{\"Status:\":\"404 NOT FOUND\",\"Entity\":\"" + entityName + "\"}";
 
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            throwException(inputJson);
         }
     }
 
@@ -34,14 +27,7 @@ public class ResponseHandler {
         if (entity != null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"" + tag + "\", \"Info:\":\"Already in database\"}";
 
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            throwException(inputJson);
         }
     }
 
@@ -61,14 +47,7 @@ public class ResponseHandler {
         if (teacher.getFirstName() == null || teacher.getLastName() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"firstName  and lastName are required\"}";
 
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            throwException(inputJson);
         }
     }
 
@@ -76,14 +55,7 @@ public class ResponseHandler {
         if (student.getLastName() == null || student.getFirstName() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"firstName and lastName are required\"}";
 
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            throwException(inputJson);
         }
     }
 
@@ -91,14 +63,7 @@ public class ResponseHandler {
         if (student.getEmail() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN STUDENT\", \"Info:\":\"Email is required\"}";
 
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            throwException(inputJson);
         }
     }
 
@@ -106,14 +71,7 @@ public class ResponseHandler {
         if (teacher.getEmail() == null) {
             final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"UNKNOWN TEACHER\", \"Info:\":\"Email is required\"}";
 
-            try {
-                throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                        .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                        .type(MediaType.APPLICATION_JSON).build());
-
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            throwException(inputJson);
         }
     }
 
@@ -122,15 +80,19 @@ public class ResponseHandler {
             if (sub.getSubjectName().equalsIgnoreCase(subjectName)) {
                 final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"" + entityName + "\", \"Info:\":\"Duplicate entry found\"}";
 
-                try {
-                    throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
-                            .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
-                            .type(MediaType.APPLICATION_JSON).build());
-
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
+                throwException(inputJson);
             }
+        }
+    }
+
+    private void throwException(String inputJson) {
+        try {
+            throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
+                    .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
+                    .type(MediaType.APPLICATION_JSON).build());
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
     }
 }
