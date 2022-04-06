@@ -52,6 +52,7 @@ public class SubjectRest {
         handler.ensureEntityExists(foundSubject, subjectName);
         Student foundStudent = studentService.findByEmail(studentEmail);
         handler.ensureEntityExists(foundStudent, studentEmail);
+        handler.duplicateSubjectEliminator(foundStudent.findSubjects(), foundSubject.subjectName, studentEmail);
         subjectService.addStudent(foundStudent, subjectName);
         studentService.addSubject(foundSubject, studentEmail);
         return handler.operationResponse();

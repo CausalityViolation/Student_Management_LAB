@@ -132,4 +132,20 @@ public class ResponseHandler {
         }
     }
 
+    public void duplicateSubjectEliminator(List<Subject> subjects, String subjectName, String entityName) {
+        for (Subject sub : subjects) {
+            if (sub.getSubjectName().equalsIgnoreCase(subjectName)) {
+                final String inputJson = "{\"Status:\":\"406 NOT ACCEPTABLE\",\"Entity\":\"" + entityName + "\", \"Info:\":\"Duplicate entry found\"}";
+
+                try {
+                    throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE)
+                            .entity(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(inputJson)))
+                            .type(MediaType.APPLICATION_JSON).build());
+
+                } catch (JsonProcessingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

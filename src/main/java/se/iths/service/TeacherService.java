@@ -28,6 +28,7 @@ public class TeacherService {
 
     public void deleteTeacher(String email) {
         Teacher foundTeacher = entityManager.find(Teacher.class, email);
+        entityManager.merge(foundTeacher);
         entityManager.remove(foundTeacher);
     }
 

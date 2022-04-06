@@ -15,7 +15,7 @@ public class Teacher {
     @Id
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Subject> subjects = new ArrayList<>();
 
     public Teacher() {

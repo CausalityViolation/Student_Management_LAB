@@ -70,6 +70,9 @@ public class Student {
         subjects.add(subject);
     }
 
+    public List<Subject> findSubjects() {
+        return subjects;
+    }
 }
 
 

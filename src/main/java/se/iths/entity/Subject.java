@@ -55,4 +55,7 @@ public class Subject {
         this.teacher = teacher;
     }
 
+    public void removeStudent(Student stu) {
+        students.remove(stu);
+    }
 }

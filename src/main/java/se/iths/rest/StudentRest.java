@@ -1,8 +1,10 @@
 package se.iths.rest;
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
 import se.iths.exceptionHandling.ResponseHandler;
 import se.iths.service.StudentService;
+import se.iths.service.SubjectService;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -18,10 +20,12 @@ public class StudentRest {
     ResponseHandler handler = new ResponseHandler();
 
     StudentService studentService;
+    SubjectService subjectService;
 
     @Inject
-    public StudentRest(StudentService studentService) {
+    public StudentRest(StudentService studentService, SubjectService subjectService) {
         this.studentService = studentService;
+        this.subjectService = subjectService;
     }
 
     @GET
@@ -53,7 +57,14 @@ public class StudentRest {
     @Path("{mail}")
     @DELETE
     public Response deleteStudentByMail(@PathParam("mail") String mail) {
-        handler.ensureEntityExists(studentService.findByEmail(mail), mail);
+        Student foundStudent = studentService.findByEmail(mail);
+        handler.ensureEntityExists(foundStudent, mail);
+
+        List<Subject> subjects = foundStudent.findSubjects();
+        for (Subject sub : subjects) {
+            subjectService.removeStudent(sub, foundStudent);
+        }
+
         studentService.delete(mail);
         return handler.operationResponse();
     }

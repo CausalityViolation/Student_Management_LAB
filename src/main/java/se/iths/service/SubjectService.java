@@ -7,6 +7,7 @@ import se.iths.entity.Teacher;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -45,5 +46,15 @@ public class SubjectService {
         Subject found = manager.find(Subject.class, name);
         found.setTeacher(teacher);
         manager.merge(found);
+    }
+
+    public void removeTeacher(Subject subject) {
+        subject.setTeacher(null);
+        manager.merge(subject);
+    }
+
+    public void removeStudent(Subject sub, Student toRemove) {
+        sub.removeStudent(toRemove);
+        manager.merge(sub);
     }
 }

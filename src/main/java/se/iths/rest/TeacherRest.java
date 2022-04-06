@@ -56,7 +56,14 @@ public class TeacherRest {
     @Path("{email}")
     @DELETE
     public Response removeTeacher(@PathParam("email") String email) {
-        handler.ensureEntityExists(teacherService.findTeacherByMail(email), email);
+        Teacher foundTeacher = teacherService.findTeacherByMail(email);
+        handler.ensureEntityExists(foundTeacher, email);
+
+        for (Subject sub : foundTeacher.findSubjects()) {
+            subjectService.removeTeacher(sub);
+        }
+        foundTeacher.removeSubjects();
+
         teacherService.deleteTeacher(email);
         return handler.operationResponse();
     }
@@ -64,12 +71,11 @@ public class TeacherRest {
     @Path("{subjectName}/{email}")
     @PATCH
     public Response addSubjectToTeacher(@PathParam("email") String email, @PathParam("subjectName") String subjectName) {
-
-        //FIXA SÅ MAN INTE KAN LÄGGA TILL SAMMA SUBJECT FLERA GÅNGER TILL SAMMA LÄRARE
         Subject foundSubject = subjectService.getByName(subjectName);
         Teacher foundTeacher = teacherService.findTeacherByMail(email);
         handler.ensureEntityExists(foundTeacher, email);
         handler.ensureEntityExists(foundSubject, subjectName);
+        handler.duplicateSubjectEliminator(foundTeacher.findSubjects(), subjectName, foundTeacher.getEmail());
         teacherService.addSubjectToTeacher(email, foundSubject);
         subjectService.addTeacher(foundTeacher, subjectName);
         return handler.operationResponse();
