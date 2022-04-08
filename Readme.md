@@ -36,7 +36,7 @@ http://localhost:8080/student-management-system/comrade/students/{email}
 
 ===========================================================================
 
-# NEW TEACHER (POST)
+# ADD NEW TEACHER (POST)
 http://localhost:8080/student-management-system/comrade/teachers
 
 Json body:
@@ -59,12 +59,12 @@ Json body:
 }
 ```
 
-# GET TEACHER(by email) (GET)
+# FIND TEACHER(by email) (GET)
 E.g.
 http://localhost:8080/student-management-system/comrade/teachers/{email}
 
 
-# GET ALL TEACHERS (GET)
+# FIND ALL TEACHERS (GET)
 http://localhost:8080/student-management-system/comrade/teachers
 
 
@@ -90,11 +90,11 @@ Json body:
 http://localhost:8080/student-management-system/comrade/subjects/{subjectName}/{studentEmail}
 
 
-# GET ALL SUBJECTS (GET)
+# FIND ALL SUBJECTS (GET)
 http://localhost:8080/student-management-system/comrade/subjects
 
 
-# GET SUBJECT BY NAME (GET)
+# FIND SUBJECT BY NAME (GET)
 http://localhost:8080/student-management-system/comrade/subjects/{subjectName}
 
 
