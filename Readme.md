@@ -1,4 +1,4 @@
-# NEW STUDENT
+# NEW STUDENT (POST)
 http://localhost:8080/student-management-system/comrade/students
 
 Json body:
@@ -11,7 +11,7 @@ Json body:
 }
 ```
 
-# UPDATE STUDENT
+# UPDATE STUDENT (PATCH)
 http://localhost:8080/student-management-system/comrade/students/{email}
 
 Json body:
@@ -22,21 +22,21 @@ Json body:
 }
 ```
 
-# GET STUDENT(by Last name)
+# FIND STUDENT(by Last name) (QUERY)
 E.g.
 http://localhost:8080/student-management-system/comrade/students/query?lastName=And
 
 
-# GET ALL STUDENTS
+# FIND ALL STUDENTS (GET)
 http://localhost:8080/student-management-system/comrade/students
 
 
-# DELETE STUDENT(by Email)
+# DELETE STUDENT(by Email) (DELETE)
 http://localhost:8080/student-management-system/comrade/students/{email}
 
 ===========================================================================
 
-# NEW TEACHER
+# NEW TEACHER (POST)
 http://localhost:8080/student-management-system/comrade/teachers
 
 Json body:
@@ -48,7 +48,7 @@ Json body:
 }
 ```
 
-# UPDATE TEACHER
+# UPDATE TEACHER (PATCH)
 http://localhost:8080/student-management-system/comrade/teachers/{email}
 
 Json body:
@@ -59,24 +59,24 @@ Json body:
 }
 ```
 
-# GET TEACHER(by email)
+# GET TEACHER(by email) (GET)
 E.g.
 http://localhost:8080/student-management-system/comrade/teachers/{email}
 
 
-# GET ALL TEACHERS
+# GET ALL TEACHERS (GET)
 http://localhost:8080/student-management-system/comrade/teachers
 
 
-# REMOVE TEACHER(by Email)
+# REMOVE TEACHER(by Email) (DELETE)
 http://localhost:8080/student-management-system/comrade/teachers/{email}
 
-# ADD SUBJECT TO TEACHER
+# ADD SUBJECT TO TEACHER (PATCH)
 http://localhost:8080/student-management-system/comrade/teachers/{SubjectName}/{email}
 
 ===========================================================================
 
-# NEW SUBJECT
+# NEW SUBJECT (POST)
 http://localhost:8080/student-management-system/comrade/subjects
 
 Json body:
@@ -86,19 +86,19 @@ Json body:
 }
 ```
 
-# ADD STUDENT TO SUBJECT
+# ADD STUDENT TO SUBJECT (PATCH)
 http://localhost:8080/student-management-system/comrade/subjects/{subjectName}/{studentEmail}
 
 
-# GET ALL SUBJECTS
+# GET ALL SUBJECTS (GET)
 http://localhost:8080/student-management-system/comrade/subjects
 
 
-# GET SUBJECT BY NAME
+# GET SUBJECT BY NAME (GET)
 http://localhost:8080/student-management-system/comrade/subjects/{subjectName}
 
 
-# DELETE SUBJECT BY NAME
+# DELETE SUBJECT BY NAME (DELETE)
 http://localhost:8080/student-management-system/comrade/subjects/{subjectName}
 
 
