@@ -17,7 +17,7 @@ http://localhost:8080/student-management-system/comrade/students/{email}
 Json body:
 ``` Json
 {
-	"lastName":"fittluder",
+	"lastName":"grisen",
 	"firstName":"g"
 }
 ```
